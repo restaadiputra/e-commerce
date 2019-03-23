@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>E-Commerce</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <style>
+    .checked {
+      color: orange;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white mb-4">
+    <div class="container">
+      <a class="navbar-brand" href="http://127.0.0.1:8080">logo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <form class="form-inline ">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search Product" aria-label="Search">
+      </form>
+
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <ul class="navbar-nav ml-auto my-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+          </li>
+
+          <!-- Category -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">cat1</a>
+              <a class="dropdown-item" href="#">cat2</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">cat3</a>
+            </div>
+          </li>
+          <!-- Category -->
+
+          <!-- Sign In -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Sign in</a>
+          </li>
+          <!-- Sign In -->
+
+          <!-- Cart -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="fas fa-shopping-cart"></i>Cart
+              <!-- Item in cart -->
+              <span class="badge badge-secondary">1</span>
+              <!-- Item in cart -->
+            </a>
+          </li>
+          <!-- Cart -->
+        </ul>
+
+
+      </div>
+    </div>
+  </nav>
+  <!-- Navbar -->
+
+  <!-- Content -->
+  <div class="container">
+    <div class="row">
+
+      <!-- Product Detail -->
+      <div class="col-lg-12">
+        <div class="row mb-4">
+
+          <!-- Image -->
+          <div class="col-12 col-lg-6">
+            <a href="" data-toggle="modal" data-target="#productModal">
+              <img class="img-fluid" src="http://placehold.it/500x500" />
+            </a>
+
+            <div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="productModalLabel">Product title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <img class="img-fluid" src="http://placehold.it/800x800" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Image -->
+
+          <!-- Detail -->
+          <div class="col-12 col-lg-6">
+            <!-- Title -->
+            <h3 class="mb-4">Samsung Galaxy S4 I337 16GB 4G LTE Unlocked GSM Android Cell Phone</h3>
+
+            <!-- Price -->
+            <h4 class="mb-4">Price: <span>$180</span></h4>
+
+            <!-- Reviews -->
+            <div class="mb-4">
+              <div class="stars">
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star checked"></span>
+                <span class="fa fa-star"></span>
+                <span class="fa fa-star"></span>
+              </div>
+              <span class="review-no">41 reviews</span>
+            </div>
+            <hr>
+            <div class="mb-4">
+              <p>Shipping:</p>
+              <p>Free Shipping</p>
+            </div>
+            <hr>
+            <!-- Quantity -->
+            <div class="mb-4">
+              <label>Quantity :</label>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button type="button" class="btn btn-outline-secondary btn-number" data-type="minus" data-field="">
+                    <i class="fa fa-minus"></i>
+                  </button>
+                </div>
+                <input type="text" class="form-control" id="quantity" name="quantity" min="1" max="100" value="1">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-secondary btn-number" data-type="plus" data-field="">
+                    <i class="fa fa-plus"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Botones de compra -->
+            <div class="mb-4">
+              <button class="btn btn-secondary">
+                <i class="fa fa-shopping-cart"></i> Add To Cart
+              </button>
+              <button class="btn btn-outline-secondary">
+                  <i class="far fa-heart"></i> Add To Wishlist
+              </button>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Description -->
+          <div class="col-12">
+            <div class="card border-light mb-3">
+              <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-align-justify"></i> Description</div>
+              <div class="card-body">
+                <p class="card-text">
+                  Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+                </p>
+                <p class="card-text">
+                  Contrairement à une opinion répandue, le Lorem Ipsum n'est pas simplement du texte aléatoire. Il trouve ses racines dans une oeuvre de la littérature latine classique datant de 45 av. J.-C., le rendant vieux de 2000 ans. Un professeur du Hampden-Sydney College, en Virginie, s'est intéressé à un des mots latins les plus obscurs, consectetur, extrait d'un passage du Lorem Ipsum, et en étudiant tous les usages de ce mot dans la littérature classique, découvrit la source incontestable du Lorem Ipsum. Il provient en fait des sections 1.10.32 et 1.10.33 du "De Finibus Bonorum et Malorum" (Des Suprêmes Biens et des Suprêmes Maux) de Cicéron. Cet ouvrage, très populaire pendant la Renaissance, est un traité sur la théorie de l'éthique. Les premières lignes du Lorem Ipsum, "Lorem ipsum dolor sit amet...", proviennent de la section 1.10.32.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews -->
+          <div class="col-12" id="reviews">
+            <div class="card border-light mb-3">
+              <div class="card-header bg-secondary text-white text-uppercase"><i class="fa fa-comment"></i> Reviews</div>
+              <div class="card-body">
+                <div class="review">
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                  <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
+
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  <span class="fa fa-star"></span>
+                  by Paul Smith
+                  <p class="blockquote">
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  </p>
+                  <hr>
+                </div>
+                <div class="review">
+                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                  <meta itemprop="datePublished" content="01-01-2016">January 01, 2018
+
+                  <span class="fa fa-star" aria-hidden="true"></span>
+                  <span class="fa fa-star" aria-hidden="true"></span>
+                  <span class="fa fa-star" aria-hidden="true"></span>
+                  <span class="fa fa-star" aria-hidden="true"></span>
+                  <span class="fa fa-star" aria-hidden="true"></span>
+                  by Paul Smith
+                  <p class="blockquote">
+                    <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                  </p>
+                  <hr>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Product Detail -->
+
+  </div>
+
+
+  </div>
+  <!-- Upper Content -->
+
+  <!-- Script -->
+  <!-- Boostrap JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+  <script>
+    var quantitiy = 0;
+    $('.quantity-right-plus').click(function (e) {
+
+      // Stop acting like a button
+      e.preventDefault();
+      // Get the field name
+      var quantity = parseInt($('#quantity').val());
+
+      // If is not undefined
+
+      $('#quantity').val(quantity + 1);
+
+
+      // Increment
+
+    });
+
+    $('.quantity-left-minus').click(function (e) {
+      // Stop acting like a button
+      e.preventDefault();
+      // Get the field name
+      var quantity = parseInt($('#quantity').val());
+
+      // If is not undefined
+
+      // Increment
+      if (quantity > 0) {
+        $('#quantity').val(quantity - 1);
+      }
+    });
+    
+  </script>
+</body>
+
+</html>
