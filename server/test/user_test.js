@@ -29,7 +29,7 @@ describe('User End Point Test', function () {
   });
 
   // test for user register
-  describe('POST /users/register', function () {
+  describe('POST /userss/register', function () {
     describe('Success: ', function () {
       it('Should return an object of user with status 201', function (done) {
         const newUser = {
@@ -41,7 +41,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(newUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -74,7 +74,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(sameUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -94,7 +94,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(sameUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -115,7 +115,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(sameUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -136,7 +136,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(sameUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -157,7 +157,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/register')
+          .post('/users/register')
           .send(sameUser)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -171,7 +171,7 @@ describe('User End Point Test', function () {
   })
 
   // test for user sign in
-  describe('POST /users/signin', function () {
+  describe('POST /userss/signin', function () {
     describe('Success: ', function () {
       it('Should return an object filled with token and fullname with status 201', function (done) {
         const userData = {
@@ -181,7 +181,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/signin')
+          .post('/users/signin')
           .send(userData)
           .end(function (err, res) {
             expect(err).to.be.null;
@@ -204,7 +204,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/signin')
+          .post('/users/signin')
           .send(userData)
           .end(function (err, res) {
 
@@ -224,7 +224,7 @@ describe('User End Point Test', function () {
 
         chai
           .request(app)
-          .post('/user/signin')
+          .post('/users/signin')
           .send(userData)
           .end(function (err, res) {
 

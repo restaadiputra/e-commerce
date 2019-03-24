@@ -16,32 +16,8 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <form class="form-inline">
-        <input
-          class="form-control mr-sm-2"
-          type="search"
-          placeholder="Search Product"
-          aria-label="Search"
-        >
-      </form>
-
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto my-lg-0">
-          <li class="nav-item dropdown border-right">
-            <a
-              class="nav-link dropdown-toggle"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >Category</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <router-link class="dropdown-item" to="/category1">Category 1</router-link>
-              <router-link class="dropdown-item" to="/category2">Category 2</router-link>
-              <router-link class="dropdown-item" to="/category3">Category 3</router-link>
-            </div>
-          </li>
 
           <li v-if="getSigninStatus" class="nav-item mx-3">
             <span class="navbar-text">{{ getUserFullname }}</span>

@@ -60,7 +60,7 @@ describe('Product End Point Test', function () {
 
       chai
         .request(app)
-        .post('/user/register')
+        .post('/users/register')
         .send(newUser)
         .end(function (err, res) {
           done()
@@ -75,7 +75,7 @@ describe('Product End Point Test', function () {
 
       chai
         .request(app)
-        .post('/user/signin')
+        .post('/users/signin')
         .send(userData)
         .end(function (err, res) {
           token = res.body.token
@@ -314,20 +314,6 @@ describe('Product End Point Test', function () {
 
       })
     })
-
-    describe('Fail: ', function () {
-      it('Without sign in: Should return status 401 with message: Need Login first.', function (done) {
-        chai
-          .request(app)
-          .get('/products')
-          .end(function (err, res) {
-            expect(err).to.be.null;
-            expect(res).to.have.status(401);
-            expect(res.body.message).to.be.equal('Need Login first.');
-            done();
-          })
-      })
-    })
   })
 
   describe('GET /products/:id', function () {
@@ -358,18 +344,6 @@ describe('Product End Point Test', function () {
     })
 
     describe('Fail: ', function () {
-      it('Without sign in: Should return status 401 with message: Need Login first.', function (done) {
-        chai
-          .request(app)
-          .get(`/products/${product_id}`)
-          .end(function (err, res) {
-            expect(err).to.be.null;
-            expect(res).to.have.status(401);
-            expect(res.body.message).to.be.equal('Need Login first.');
-            done();
-          })
-      })
-
       it('With non-exist id: Should return status 404 with message: No Product found.', function (done) {
         chai
           .request(app)

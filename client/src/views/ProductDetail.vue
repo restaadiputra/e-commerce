@@ -70,9 +70,13 @@
 
             <!-- Button -->
             <div class="mb-4">
-              <button v-on:click="addToCart" class="btn btn-secondary mr-4">
+              <button v-if="getSignIn" v-on:click="addToCart" class="btn btn-secondary mr-4">
                 <i class="fa fa-shopping-cart"></i> Add To Cart
               </button>
+              <button v-if="!getSignIn" v-on:click="addToCart" class="btn btn-secondary mr-4" disabled>
+                <i class="fa fa-shopping-cart"></i> Add To Cart
+              </button>
+              <span v-if="!getSignIn" ><i>Need login first to add item into your cart</i></span>
               <router-link v-if="previewCart" class="btn btn-outline-secondary mr-4" :to="'/carts/'">
                 <i class="fas fa-cart-plus"></i> View Cart
               </router-link>
@@ -122,6 +126,15 @@ export default {
       loading: false,
       amount: 1,
       previewCart: false,
+    }
+  },
+  computed: {
+    getSignIn() {
+      if(localStorage.getItem('token')) {
+        return true
+      } else {
+        return false
+      }
     }
   },
   methods: {

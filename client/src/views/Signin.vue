@@ -1,6 +1,12 @@
 <template>
   <div class="container">
     <Loading v-if="loading" />
+    <div v-if="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+      {{ alertMessage }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
     <div class="col-sm-12">
       <h3 class="dark-grey text-center">
         <b>Sign In</b>
@@ -61,11 +67,15 @@ export default {
         password: '',
       },
       loading: false,
+      alert: false, 
+      alertMessage: ''
     };
   },
   methods: {
     signin() {
       this.loading = !this.loading;
+      this.alert = false, 
+      this. alertMessage ='' 
       this.$axios
         .post('/users/signin', this.user)
         .then(({ data }) => {
@@ -85,7 +95,9 @@ export default {
           });
         })
         .catch((err) => {
-          console.log(err);
+          this.loading = !this.loading;
+          this.alert = true
+          this.alertMessage = err.response.data.message
         });
     },
     clearForm() {

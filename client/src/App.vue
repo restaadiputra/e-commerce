@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Navbar />
-    <main>
+    <main class="mb-5">
       <transition
         name="fade"
         mode="out-in"
@@ -9,17 +9,18 @@
       <router-view />
       </transition>
     </main>
-    <footer></footer>
+    <FooterCustom />
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Navbar.vue';
-
+import FooterCustom from '@/components/Footer.vue'
 export default {
   name: 'home',
   components: {
     Navbar,
+    FooterCustom
   },
   data() {
     return {

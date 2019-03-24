@@ -106,7 +106,6 @@ export default {
   }, 
   methods: {
     removeCart(id) {
-      console.log(id)
       const token = localStorage.getItem('token');
       this.$axios
         .delete(`/carts/${id}`, {

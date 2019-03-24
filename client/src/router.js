@@ -44,6 +44,11 @@ const router = new Router({
       name: 'dashboard',
       component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
     },
+    {
+      path: '*',
+      name: 'not-found',
+      component: () => import(/* webpackChunkName: "not-found" */ './views/NotFound.vue'),
+    },
   ],
   
 });
