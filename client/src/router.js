@@ -15,24 +15,34 @@ const router = new Router({
       component: Home,
     },
     {
+      path: '/products/:id',
+      name: 'product-detail',
+      component: () => import(/* webpackChunkName: "product-detail" */ './views/ProductDetail.vue'),
+    },
+    {
+      path: '/carts',
+      name: 'carts',
+      component: () => import(/* webpackChunkName: "carts" */ './views/CartDetail.vue'),
+    },
+    {
       path: '/signin',
       name: 'signin',
-      component: () => import('./views/Signin.vue'),
+      component: () => import(/* webpackChunkName: "signin" */ './views/Signin.vue'),
     },
     {
       path: '/register',
       name: 'register',
-      component: () => import('./views/Register.vue'),
+      component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
     },
     {
       path: '/secret/admin',
       name: 'admin',
-      component: () => import('./views/AdminLogin.vue')
+      component: () => import(/* webpackChunkName: "admin" */ './views/AdminLogin.vue')
     },
     {
       path: '/admin/dashboard',
       name: 'dashboard',
-      component: () => import('./views/Dashboard.vue'),
+      component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
     },
   ],
   
@@ -44,7 +54,7 @@ router.beforeEach((to, from, next) => {
     to.fullPath === '/signin' ||
     to.fullPath === '/register') {
     if(store.state.signin && store.state.role === 'admin') {
-      next('/dashboard');
+      next('/admin/dashboard');
     } else {
       store.commit('mutateRole', 'customer');
     }
@@ -53,7 +63,7 @@ router.beforeEach((to, from, next) => {
     to.fullPath === '/admin/signin' ||
     to.fullPath === '/secret/admin' ) {
     if(store.state.signin && store.state.role === 'admin') {
-      next('/dashboard');
+      next('/admin/dashboard');
     } else if(store.state.signin && store.state.role === 'customer') {
       next('/');
     } else {

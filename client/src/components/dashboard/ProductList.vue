@@ -10,7 +10,8 @@
         <div v-for="(product, index) in products" :key="index" class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100 card_item">
           <a v-on:click="getProductDetail(product._id)">
-            <img class="card-img-top" v-bind:src="product.image" alt>
+            <img class="card-img-top" v-bind:src="product.image" v-bind:alt="product.name"
+            width="700">
           </a>
           <div class="card-body">
             <h4 class="card-title">

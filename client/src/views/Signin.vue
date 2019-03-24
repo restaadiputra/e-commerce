@@ -79,10 +79,10 @@ export default {
             fullname: data.fullname,
             role: data.role
           });
+          this.$store.dispatch('getCartCount')
           this.$router.push({
             path: '/',
           });
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);

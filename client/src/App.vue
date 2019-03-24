@@ -28,6 +28,11 @@ export default {
 
     };
   },
+  created() {
+    if(localStorage.getItem('token')) {
+      this.$store.dispatch('getCartCount')
+    } 
+  },
   methods: {
     changeStatusToSignin() {
       this.signin = true;

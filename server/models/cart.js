@@ -5,20 +5,16 @@ const cartSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'User'
+  },      
+  productId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
   },
-  productlist: [
-    {
-      productId: {
-        type: Schema.Types.ObjectId,
-        ref: 'Product'
-      },
-      amount: {
-        type: Number,
-        required: [true, 'Stock must be filled.'],
-        min: [1, 'Stock cannot be zero.']
-      }
-    }
-  ]
+  amount: {
+    type: Number,
+    required: [true, 'Stock must be filled.'],
+    min: [1, 'Stock cannot be zero.']
+  }
 });
 
 const Cart = mongoose.model('Cart', cartSchema);

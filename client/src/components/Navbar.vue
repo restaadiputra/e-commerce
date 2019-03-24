@@ -62,9 +62,9 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#">
-              <i class="fas fa-shopping-cart"></i>Cart
-            </a>
+            <router-link class="nav-link"  :to="'/carts/'">
+              <i class="fas fa-shopping-cart"></i>Cart <span v-if="getCartCount > 0" class="badge badge-secondary">{{ getCartCount }}</span>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -87,6 +87,9 @@ export default {
     },
     getUserRole() {
       return this.$store.state.role;
+    },
+    getCartCount() {
+      return this.$store.state.cartCount
     }
   },
   methods: {
@@ -100,7 +103,8 @@ export default {
       this.$store.commit('mutateSigninStatus', {
         signin: false,
         fullname: '',
-        role: 'customer'
+        role: 'customer',
+        cartCount: 0
       });
       this.$router.push({
         path: "/"

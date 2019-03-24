@@ -91,7 +91,9 @@ export default {
         .then(({ data }) => {
           this.loading = !this.loading;
           this.clearForm();
-          console.log(data);
+          this.$router.push({
+            path: '/signin',
+          });
         })
         .catch((err) => {
           console.log(err.response.data.message);

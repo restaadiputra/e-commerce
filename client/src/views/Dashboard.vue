@@ -6,6 +6,7 @@
         <a v-on:click="changeView('MainDashboard')" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a v-on:click="changeView('ProductList')" class="list-group-item list-group-item-action bg-light">Product List</a>
         <a v-on:click="changeView('EditorProduct')" class="list-group-item list-group-item-action bg-light">Add Product</a>
+        <a v-on:click="changeView('Highlight')" class="list-group-item list-group-item-action bg-light">Add Highlight</a>
         <a v-on:click="signout()" class="list-group-item list-group-item-action bg-danger text-white">Sign Out</a>
       </div>
     </div>
