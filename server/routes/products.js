@@ -5,6 +5,7 @@ const { multer, uploadToGCS } = require('../middlewares/image');
 
 
 products.use('/', authenticate);
+products.get('/user', ProductController.findAllByUserId)
 products.get('/', ProductController.findAll);
 products.post('/',  multer.single('image'), uploadToGCS, ProductController.create);
 products.get('/:id', ProductController.findOne);

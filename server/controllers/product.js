@@ -33,6 +33,17 @@ function findOne({ params }, res, next) {
     })
 }
 
+function findAllByUserId({ decoded }, res, next) {
+  Product
+    .find({userId: decoded.id})
+    .then(function(products) {
+      res.status(200).json(products);
+    })
+    .catch(function(err) {
+      next(err);
+    });
+}
+
 function create({ body, decoded, file }, res, next) {
   body.userId = decoded.id;
   body.image = file ? file.cloudStoragePublicUrl : '';
@@ -64,7 +75,11 @@ function create({ body, decoded, file }, res, next) {
     });
 }
 
-function updateOne({ params, body }, res, next) {
+function updateOne({ params, body, file, decoded }, res, next) {
+  body.userId = decoded.id;
+  if(file) {
+    body.image = file.cloudStoragePublicUrl;
+  }
   const opts = {
     new: true,
     runValidators: true,
@@ -107,6 +122,7 @@ function deleteOne({ params }, res, next) {
 module.exports = {
   findAll,
   findOne,
+  findAllByUserId,
   create,
   updateOne,
   deleteOne

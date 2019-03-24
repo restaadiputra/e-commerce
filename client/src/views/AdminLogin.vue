@@ -53,9 +53,6 @@ export default {
       loading: false,
     };
   },
-  created() {
-    this.$store.commit('mutateRole', 'admin');
-  },
   methods: {
     clearForm() {
       this.user = {

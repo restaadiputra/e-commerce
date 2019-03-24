@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import store from './store';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -34,4 +35,38 @@ export default new Router({
       component: () => import('./views/Dashboard.vue'),
     },
   ],
+  
 });
+
+router.beforeEach((to, from, next) => {
+  if (
+    to.fullPath === '/' ||
+    to.fullPath === '/signin' ||
+    to.fullPath === '/register') {
+    if(store.state.signin && store.state.role === 'admin') {
+      next('/dashboard');
+    } else {
+      store.commit('mutateRole', 'customer');
+    }
+  }
+  if (
+    to.fullPath === '/admin/signin' ||
+    to.fullPath === '/secret/admin' ) {
+    if(store.state.signin && store.state.role === 'admin') {
+      next('/dashboard');
+    } else if(store.state.signin && store.state.role === 'customer') {
+      next('/');
+    } else {
+      store.commit('mutateRole', 'admin');
+    }
+  }
+  if(to.fullPath === '/admin/dashboard') {
+    if(!store.state.signin && store.state.role !== 'admin') {
+      next('/secret/admin')
+    }
+  }
+  next();
+});
+
+
+export default router;

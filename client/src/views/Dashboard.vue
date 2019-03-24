@@ -6,6 +6,7 @@
         <a v-on:click="changeView('MainDashboard')" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a v-on:click="changeView('ProductList')" class="list-group-item list-group-item-action bg-light">Product List</a>
         <a v-on:click="changeView('EditorProduct')" class="list-group-item list-group-item-action bg-light">Add Product</a>
+        <a v-on:click="signout()" class="list-group-item list-group-item-action bg-danger text-white">Sign Out</a>
       </div>
     </div>
     <!-- Sidebar -->
@@ -13,7 +14,11 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <transition name="fade" mode="out-in">
-        <component v-bind:is="view"></component>
+        <component 
+        v-on:changeView="changeView"
+        v-on:editProduct="editProduct"
+        v-bind:productId="productId"
+        v-bind:is="view"></component>
       </transition>
     </div>
     <!-- Page Content -->
@@ -33,7 +38,7 @@ export default {
   },
   data () {
     return {
-      view: 'MainDashboard',
+      view: 'ProductList',
       toggled: false,
       productId: ''
     }
@@ -48,7 +53,27 @@ export default {
       this.toggled = !this.toggled
     },
     changeView(view) {
+      if(view === 'EditorProduct') {
+        this.productId = ''
+      }
       this.view = view
+    },
+    editProduct(id) {
+      this.productId = id
+      this.view = EditorProduct;
+    } ,
+    signout() {
+      localStorage.removeItem("token");
+      localStorage.removeItem("fullname");
+      localStorage.removeItem("role")
+      this.$store.commit('mutateSigninStatus', {
+        signin: false,
+        fullname: '',
+        role: 'admin'
+      });
+      this.$router.push({
+        path: "/secret/admin"
+      });
     }
   }
 }
