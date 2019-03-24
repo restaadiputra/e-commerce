@@ -7,30 +7,22 @@ export default new Vuex.Store({
   state: {
     signin: localStorage.getItem('token') ? true : false,
     fullname: localStorage.getItem('fullname') ? localStorage.getItem('fullname') : '',
-    userRole: 'admin'
-    // userRole: localStorage.getItem('role') ? localStorage.getItem('role') : ''
+    role: localStorage.getItem('role') ? localStorage.getItem('role') : 'customer'
   },
   mutations: {
-    // mutateRoom(state, roomObj) {
-    //   state.roomList.push(roomObj);
-    // },
-    mutateSigninStatus(state, status) {
-      state.signin = status;
+    mutateSigninStatus(state, data) {
+      state.signin = data.signin;
+      state.fullname = data.fullname;
+      state.role = data.role;
     },
-
-    mutateFullname(state, fullname) {
-      state.fullname = fullname;
+    mutateRole(state, role) {
+      state.role = role
     }
-
   },
   actions: {
     // changeStatusSignin({ commit }, status) {
     //   commit('mutate')
     // }
-    // createRoom({ commit }, dataObj) {
-    //   commit('mutateRoom', dataObj)
-    // },
-
     
   },
 });

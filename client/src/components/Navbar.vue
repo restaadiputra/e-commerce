@@ -86,7 +86,7 @@ export default {
       return this.$store.state.fullname;
     },
     getUserRole() {
-      return this.$store.state.userRole;
+      return this.$store.state.role;
     }
   },
   methods: {
@@ -96,8 +96,12 @@ export default {
     signout() {
       localStorage.removeItem("token");
       localStorage.removeItem("fullname");
-      this.$store.commit("mutateSigninStatus", false);
-      this.$store.commit("mutateFullname", "");
+      localStorage.removeItem("role")
+      this.$store.commit('mutateSigninStatus', {
+        signin: false,
+        fullname: '',
+        role: 'customer'
+      });
       this.$router.push({
         path: "/"
       });

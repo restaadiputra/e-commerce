@@ -87,7 +87,7 @@ export default {
     register() {
       this.loading = !this.loading;
       this.$axios
-        .post('/user/register', this.user)
+        .post('/users/register', this.user)
         .then(({ data }) => {
           this.loading = !this.loading;
           this.clearForm();

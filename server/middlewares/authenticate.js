@@ -9,8 +9,14 @@ module.exports = {
         User.findById(decoded.id, (err, user) => {
           if (!err) {
             if (user) {
-              req.decoded = decoded
-              next()
+              if(user.role === 'admin') {
+                req.decoded = decoded
+                next()
+              } else {
+                res.status(401).json({
+                  warning: 'Only Admin can access.'
+                })
+              }
             } else {
               res.status(400).json({
                 warning: 'Invalid token!'

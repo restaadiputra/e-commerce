@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <Loading v-if="loading" />
     <div class="row my-4 mx-2">
       <div class="col-sm-12">
         <h3><b>Product Detail</b></h3>
@@ -13,8 +14,8 @@
             </div>
 
             <div class="form-group col-sm-12 col-md-6">
-              <label class="control-label" for="description">Category</label>
-              <input id="description" name="description" class="form-control" required type="text">
+              <label class="control-label" for="category">Category</label>
+              <input id="category" name="category" class="form-control" required type="text">
             </div>
 
             <div class="form-group col-sm-12 col-md-6">
@@ -32,16 +33,15 @@
               <textarea class="form-control" id="description" rows="3"></textarea>
             </div>
 
-            <div class="form-group col-sm-12 col-md-6">
+            <div class="form-group col-md-12 col-lg-6">
               <div class="row">
                 <div class="col-12">
-                  <input type="file" class="custom-file-input form-control" id="customFile">
-                  <label class="custom-file-label mx-3" for="customFile">Choose file</label>
+                  <input v-on:change.prevent="handleFileUpload" type="file" class="custom-file-input form-control" id="customFile" ref="file">
+                  <label class="custom-file-label mx-3" for="customFile">{{filename === '' ? 'Choose File' : filename}}</label>
                 </div>
               </div>
             </div>
 
-            <!-- Button -->
             <div class="form-group col-sm-12">
               <button id="singlebutton" name="singlebutton" class="btn btn-primary">Create Product</button>
             </div>
@@ -52,7 +52,60 @@
   </div>
 </template>
 <script>
+import Loading from '@/components/Loading.vue';
 export default {
-  name: "add-product"
+  name: "add-product",
+  components: {
+    Loading,
+  },
+  data() {
+    return {
+      product: {
+        name: '',
+        category: '',
+        stock: 1,
+        price: 1,
+        description: '',
+        image: ''
+      },
+      filename: '',
+      loading: false,
+    }
+  },
+  methods: {
+    handleFileUpload() {
+      this.filename = this.$refs.file.files[0].name;
+      this.product.image = this.$refs.file.files[0];
+    },
+    createProduct() {
+      this.loading = !this.loading;
+
+      const token = localStorage.getItem('token');
+
+      const newProduct = new FormData();
+      newProduct.append('name', this.product.name)
+      newProduct.append('description', this.product.description)
+      newProduct.append('category', this.product.category)
+      newProduct.append('stock', this.product.stock)
+      newProduct.append('price', this.product.price)
+      newProduct.append('description', this.product.description)
+      newProduct.append('image', this.product.image)
+      
+      this.$axios
+        .post(`/products`, newProduct, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            token: token
+          }
+        })
+        .then(({ data }) => {
+          console.log(data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+    },
+  }
 };
 </script>

@@ -51,9 +51,10 @@ function signin({ body }, res, next) {
           message: 'Username/Password is wrong.'
         })
       } else {
-        const {_id, fullname } = user
+        console.log(user)
+        const {_id, fullname, role } = user
         const token = jwt.sign({ id: _id }, JWT_SECRET);
-        res.status(200).json({ id: _id, fullname, token })
+        res.status(200).json({ fullname, role, token })
       }
     }
   })

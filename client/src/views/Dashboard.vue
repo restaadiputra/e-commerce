@@ -5,7 +5,7 @@
       <div class="list-group list-group-flush">
         <a v-on:click="changeView('MainDashboard')" class="list-group-item list-group-item-action bg-light">Dashboard</a>
         <a v-on:click="changeView('ProductList')" class="list-group-item list-group-item-action bg-light">Product List</a>
-        <a v-on:click="changeView('AddProduct')" class="list-group-item list-group-item-action bg-light">Add Product</a>
+        <a v-on:click="changeView('EditorProduct')" class="list-group-item list-group-item-action bg-light">Add Product</a>
       </div>
     </div>
     <!-- Sidebar -->
@@ -22,19 +22,20 @@
 <script>
 import MainDashboard from "@/components/dashboard/MainDashboard.vue";
 import ProductList from "@/components/dashboard/ProductList.vue";
-import AddProduct from "@/components/dashboard/AddProduct.vue";
+import EditorProduct from "@/components/dashboard/EditorProduct.vue";
 
 export default {
   name: 'dashboard',
   components: {
     MainDashboard,
     ProductList,
-    AddProduct
+    EditorProduct
   },
   data () {
     return {
       view: 'MainDashboard',
-      toggled: false
+      toggled: false,
+      productId: ''
     }
   },
   mounted() {

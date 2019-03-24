@@ -53,12 +53,14 @@ const userSchema = new Schema({
   },
   address: {
     type: String,
-    required: [true, 'Address must be filled.']
   },
   phone: {
     type: String,
-    required: [true, 'Phone must be filled.']
   },
+  role: {
+    type: String,
+    default: 'customer',
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

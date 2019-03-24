@@ -33,33 +33,35 @@ function findOne({ params }, res, next) {
     })
 }
 
-function create({ body }, res, next) {
+function create({ body, decoded, file }, res, next) {
+  body.userId = decoded.id;
+  body.image = file ? file.cloudStoragePublicUrl : '';
   Product
     .create({...body})
     .then(function(product) {
-      res.status(201).json(product)
+      res.status(201).json(product);
     })
     .catch(function(err) {
       if(err.errors.name) {
         res.status(409).json({
           message: err.errors.name.message
-        })
+        });
       } else if(err.errors.description) {
         res.status(409).json({
           message: err.errors.description.message
-        })
+        });
       } else if(err.errors.price) {
         res.status(409).json({
           message: err.errors.price.message
-        })
+        });
       } else if(err.errors.stock) {
         res.status(409).json({
           message: err.errors.stock.message
-        })
+        });
       } else {
-        next(err)
+        next(err);
       }
-    })
+    });
 }
 
 function updateOne({ params, body }, res, next) {

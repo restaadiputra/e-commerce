@@ -24,7 +24,12 @@ export default new Router({
       component: () => import('./views/Register.vue'),
     },
     {
-      path: '/dashboard',
+      path: '/secret/admin',
+      name: 'admin',
+      component: () => import('./views/AdminLogin.vue')
+    },
+    {
+      path: '/admin/dashboard',
       name: 'dashboard',
       component: () => import('./views/Dashboard.vue'),
     },

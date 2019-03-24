@@ -67,18 +67,18 @@ export default {
     signin() {
       this.loading = !this.loading;
       this.$axios
-        .post('/user/signin', this.user)
+        .post('/users/signin', this.user)
         .then(({ data }) => {
           this.loading = !this.loading;
           this.clearForm();
           localStorage.setItem('token', data.token);
           localStorage.setItem('fullname', data.fullname);
-          // this.$emit('changeStatusToSignin');
-
-          // this.$store.dispatch('changeStatusSignin', true)
-
-          this.$store.commit('mutateSigninStatus', true);
-          this.$store.commit('mutateFullname', data.fullname)
+          localStorage.setItem('role', data.role)
+          this.$store.commit('mutateSigninStatus', {
+            signin: true,
+            fullname: data.fullname,
+            role: data.role
+          });
           this.$router.push({
             path: '/',
           });
