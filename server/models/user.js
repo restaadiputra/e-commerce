@@ -50,7 +50,15 @@ const userSchema = new Schema({
       },
       message: 'Wrong email format'
     }]
-  }
+  },
+  address: {
+    type: String,
+    required: [true, 'Address must be filled.']
+  },
+  phone: {
+    type: String,
+    required: [true, 'Phone must be filled.']
+  },
 }, {
   timestamps: {
     createdAt: 'created_at',
