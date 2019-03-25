@@ -15,6 +15,11 @@ const router = new Router({
       component: Home,
     },
     {
+      path: '/secret/admin',
+      name: 'admin',
+      component: () => import(/* webpackChunkName: "admin" */ './views/AdminLogin.vue')
+    },
+    {
       path: '/products/:id',
       name: 'product-detail',
       component: () => import(/* webpackChunkName: "product-detail" */ './views/ProductDetail.vue'),
@@ -34,11 +39,7 @@ const router = new Router({
       name: 'register',
       component: () => import(/* webpackChunkName: "register" */ './views/Register.vue'),
     },
-    {
-      path: '/secret/admin',
-      name: 'admin',
-      component: () => import(/* webpackChunkName: "admin" */ './views/AdminLogin.vue')
-    },
+    
     {
       path: '/admin/dashboard',
       name: 'dashboard',
