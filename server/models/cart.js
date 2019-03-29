@@ -14,7 +14,11 @@ const cartSchema = new Schema({
     type: Number,
     required: [true, 'Stock must be filled.'],
     min: [1, 'Stock cannot be zero.']
-  }
+  },
+  status: {
+    type: String,
+    default: 'new'
+  },
 });
 
 const Cart = mongoose.model('Cart', cartSchema);

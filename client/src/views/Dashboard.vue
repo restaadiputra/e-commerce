@@ -3,10 +3,26 @@
     <!-- Sidebar -->
     <div class="bg-light border-right position-sticky" id="sidebar-wrapper">
       <div class="list-group list-group-flush">
-        <a v-on:click="changeView('MainDashboard')" class="list-group-item list-group-item-action bg-light">Dashboard</a>
-        <a v-on:click="changeView('ProductList')" class="list-group-item list-group-item-action bg-light">Product List</a>
-        <a v-on:click="changeView('EditorProduct')" class="list-group-item list-group-item-action bg-light">Add Product</a>
-        <a v-on:click="changeView('AddAdmin')" class="list-group-item list-group-item-action bg-light">Add Admin</a>
+        <router-link
+        to="/admin/dashboard/add-admin"
+        class="list-group-item list-group-item-action bg-light">
+        Add Admin
+        </router-link>
+        <router-link
+        to="/admin/dashboard/delivery-info"
+        class="list-group-item list-group-item-action bg-light">
+        Delivery Info
+        </router-link>
+        <router-link
+        to="/admin/dashboard/editor?edit=new"
+        class="list-group-item list-group-item-action bg-light">
+        Add Product
+        </router-link>
+        <router-link
+        to="/admin/dashboard/products"
+        class="list-group-item list-group-item-action bg-light">
+        Product List
+        </router-link>
         <a v-on:click="signout()" class="list-group-item list-group-item-action bg-danger text-white">Sign Out</a>
       </div>
     </div>
@@ -15,33 +31,23 @@
     <!-- Page Content -->
     <div id="page-content-wrapper">
       <transition name="fade" mode="out-in">
-        <component 
+        <router-view 
         v-on:changeView="changeView"
         v-on:editProduct="editProduct"
         v-bind:productId="productId"
-        v-bind:is="view"></component>
+        ></router-view >
       </transition>
     </div>
     <!-- Page Content -->
   </div>
 </template>
 <script>
-import MainDashboard from "@/components/dashboard/MainDashboard.vue";
-import ProductList from "@/components/dashboard/ProductList.vue";
-import EditorProduct from "@/components/dashboard/EditorProduct.vue";
-import AddAdmin from "@/components/dashboard/AddAdmin.vue";
 
 export default {
   name: 'dashboard',
-  components: {
-    MainDashboard,
-    ProductList,
-    EditorProduct,
-    AddAdmin
-  },
+  
   data () {
     return {
-      view: 'ProductList',
       toggled: false,
       productId: ''
     }
@@ -56,6 +62,7 @@ export default {
       this.toggled = !this.toggled
     },
     changeView(view) {
+      console.log(view)
       if(view === 'EditorProduct') {
         this.productId = ''
       }
@@ -63,7 +70,9 @@ export default {
     },
     editProduct(id) {
       this.productId = id
-      this.view = EditorProduct;
+      this.$router.push({
+        path: '/admin/dashboard/editor'
+      })
     } ,
     signout() {
       localStorage.removeItem("token");

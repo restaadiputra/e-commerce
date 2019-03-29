@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { User, Cart } = require('../models');
 const secret = process.env.JWT_SECRET
 
 module.exports = {
@@ -28,5 +28,24 @@ module.exports = {
         })
       }
     });
-  }
+  },
+  cartAuthorize({ decoded }, res, next) {
+    Cart
+      .find({ userId: decoded.id })
+      .then(carts => {
+        const temp = carts.filter(cart => String(cart.userId) !== decoded.id)
+        if(temp.length === 0 ) {
+          next()
+        } else {
+          res.status(401).json({
+            message: 'You are not authorize to access this data.'
+          })
+        }
+      })
+      .catch(err => {
+        res.status(500).json({
+          message: err
+        })
+      })
+  },
 }

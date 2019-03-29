@@ -20,7 +20,7 @@ let newProduct = {
   stock: 10
 }
 
-describe('Product End Point Test', function () {
+describe('Cart End Point Test', function () {
   // test mongodb connection before test begin
   before(function (done) {
     mongoose.connect('mongodb://localhost/ecommerce', {
@@ -148,9 +148,7 @@ describe('Product End Point Test', function () {
             done();
           })
       })
-    })
-
-  
+    })  
   })
 
 

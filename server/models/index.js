@@ -3,4 +3,5 @@ module.exports = {
   User: require('./user'),
   Cart: require('./cart'),
   Highlight: require('./highlight'),
+  Delivery: require('./delivery')
 };

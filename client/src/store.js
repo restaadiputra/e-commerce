@@ -23,12 +23,12 @@ export default new Vuex.Store({
     },
     mutateCartCount(state, num) {
       state.cartCount += num;
+    },
+    resetCartCount(state, payload) {
+      state.cartCount = 0
     }
   },
   actions: {
-    // changeStatusSignin({ commit }, status) {
-    //   commit('mutate')
-    // }
     getCartCount({ commit }) {
       const token = localStorage.getItem('token');
       axios
@@ -38,8 +38,15 @@ export default new Vuex.Store({
           }
         })
         .then(({ data }) => {
-          console.log(data)
-          commit('mutateCartCount', data.length)
+          let count = 0
+          if(data.length > 0) {
+            data.forEach(item => {
+              if(item.status === 'new') {
+                count++
+              }
+            });
+          }
+          commit('mutateCartCount', count)
         })
     }
     

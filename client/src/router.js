@@ -30,6 +30,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "carts" */ './views/CartDetail.vue'),
     },
     {
+      path: '/checkout',
+      name: 'checkout',
+      component: () => import(/* webpackChunkName: "checkout" */ './views/CartCheckout.vue'),
+    },
+    {
       path: '/signin',
       name: 'signin',
       component: () => import(/* webpackChunkName: "signin" */ './views/Signin.vue'),
@@ -44,6 +49,34 @@ const router = new Router({
       path: '/admin/dashboard',
       name: 'dashboard',
       component: () => import(/* webpackChunkName: "dashboard" */ './views/Dashboard.vue'),
+      children: [
+        {
+          path: '',
+          name: 'main-dashboard',
+          component: () => import(/* webpackChunkName: "main-dashboard" */ './components/dashboard/MainDashboard.vue'),
+        },
+        {
+          path: '/admin/dashboard/add-admin',
+          name: 'add-admin',
+          component: () => import(/* webpackChunkName: "add-admin" */ './components/dashboard/AddAdmin.vue'),
+        },
+        {
+          path: '/admin/dashboard/delivery-info',
+          name: 'delivery-info',
+          component: () => import(/* webpackChunkName: "delivery-info" */ './components/dashboard/DeliveryInfo.vue'),
+        },
+        {
+          path: '/admin/dashboard/editor',
+          name: 'editor',
+          component: () => import(/* webpackChunkName: "editor" */ './components/dashboard/EditorProduct.vue'),
+        },
+        {
+          path: '/admin/dashboard/products',
+          name: 'products',
+          component: () => import(/* webpackChunkName: "info" */ './components/dashboard/ProductList.vue'),
+        },
+        
+      ],
     },
     {
       path: '*',

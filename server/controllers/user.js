@@ -52,7 +52,7 @@ function signin({ body }, res, next) {
         })
       } else {
         const {_id, fullname, role } = user
-        const token = jwt.sign({ id: _id }, JWT_SECRET);
+        const token = jwt.sign({ id: _id, role }, JWT_SECRET);
         res.status(200).json({ fullname, role, token })
       }
     }

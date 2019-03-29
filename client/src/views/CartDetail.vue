@@ -60,7 +60,7 @@
         <p>$ {{getTotalCart}}</p>
       </div>
       <div v-if="carts.length > 0" class="col-md-2 text-right">
-        <button class="btn btn-dark">Checkout</button>
+        <router-link class="btn btn-dark" to="/checkout">Chekout</router-link>
       </div>
     </div>
   </div>
@@ -89,7 +89,9 @@ export default {
       .then(({ data }) => {
         if(data.length > 0) {
           data.forEach(item => {
-            this.carts.push({...item.productId, amount: item.amount, cartId: item._id})
+            if(item.status === 'new') {
+              this.carts.push({...item.productId, amount: item.amount, cartId: item._id})
+            }
           });
         }
       })

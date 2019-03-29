@@ -1,5 +1,9 @@
 <template>
-  <h1>Dashboard</h1>
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+    <h1>Welcome to Dashboard</h1>
+    </div>
+  </div>
 </template>
 <script>
 export default {

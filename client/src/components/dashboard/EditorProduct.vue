@@ -83,7 +83,7 @@ export default {
     }
   },
   mounted() {
-    if(this.productId !== '') {
+    if(this.$router.history.current.query.edit !== 'new') {
       this.loading = !this.loading;
       const token = localStorage.getItem('token');
       this.$axios
@@ -116,7 +116,18 @@ export default {
         }
         this.mode = 'new'
       }
-    }
+    },
+    $route() {
+      this.product = {
+        _id: '',
+        name: '',
+        category: '',
+        stock: 1,
+        price: 1,
+        description: '',
+        image: ''
+      }
+    },
   },
   methods: {
     handleFileUpload() {
@@ -151,6 +162,9 @@ export default {
           }
         })
         .then(({ data }) => {
+          this.$router.push({
+            path: '/admin/dashboard/products'
+          })
           this.loading = !this.loading;
           this.$emit('changeView', 'ProductList');
         })

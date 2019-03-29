@@ -39,7 +39,7 @@
 
           <li class="nav-item">
             <router-link class="nav-link"  :to="'/carts/'">
-              <i class="fas fa-shopping-cart"></i>Cart <span v-if="getCartCount > 0" class="badge badge-secondary">{{ getCartCount }}</span>
+              <i class="fas fa-shopping-cart"></i>Cart <span v-if="cartCount > 0" class="badge badge-secondary">{{ cartCount }}</span>
             </router-link>
           </li>
         </ul>
@@ -52,6 +52,7 @@
   </nav>
 </template>
 <script>
+import {mapState} from 'vuex';
 export default {
   name: "navbar",
   computed: {
@@ -64,9 +65,9 @@ export default {
     getUserRole() {
       return this.$store.state.role;
     },
-    getCartCount() {
-      return this.$store.state.cartCount
-    }
+    ...mapState([
+      'cartCount'
+    ])
   },
   methods: {
     toggleSidebar() {
@@ -75,7 +76,6 @@ export default {
     signout() {
       localStorage.removeItem("token");
       localStorage.removeItem("fullname");
-      localStorage.removeItem("role")
       this.$store.commit('mutateSigninStatus', {
         signin: false,
         fullname: '',
@@ -85,7 +85,6 @@ export default {
       this.$router.push({
         path: "/"
       });
-      this.$emit("signout");
     }
   }
 };
