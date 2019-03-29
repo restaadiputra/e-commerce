@@ -96,14 +96,16 @@ export default {
         }
       })
       .then(({ data }) => {
-        this.cartId = data.car
         if (data.length > 0) {
+          
           data.forEach(item => {
-            this.carts.push({
-              ...item.productId,
-              amount: item.amount,
-              cartId: item._id
-            });
+            if(item.status === 'new') {
+              this.carts.push({
+                ...item.productId,
+                amount: item.amount,
+                cartId: item._id
+              });
+            }
           });
         }
       })
